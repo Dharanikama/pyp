@@ -1,0 +1,192 @@
+# pyp
+[12:56 am, 22/11/2025] Dharani: import json
+class student:
+    def _init_ (self,name,year):
+        self.name=name
+        self.year=year
+    def _str_(self):
+        return f"stdent({self.name},{self.year})"
+class GraduateStudent(student):
+    def _init_(self,name,year,thesis):
+        super()._init_(name,year)
+        self.thesis=thesis
+    def _str_(self):
+        return f"student({self.name},{self.year},{self.thesis})"
+g=GraduateStudent("neha",2025,"healthcare engineer")
+with open("student.json","w") as f:
+    json.dump({"name":g.name,"year":g.year,"thesis":g.thesis},f)
+print(g)
+[12:56 am, 22/11/2025] Dharani: 12-3
+[12:56 am, 22/11/2025] Dharani: main_str="my name is meghanaa.."
+sub_str="meghana"
+if sub_str in main_str:
+    print(f"string {sub_str} present.")
+else:
+    print(f"string {sub_str} not found")
+[12:56 am, 22/11/2025] Dharani: 10-1
+[12:56 am, 22/11/2025] Dharani: group_a={"a","b","c"}
+group_b={"a","d","e"}
+
+print("group_a")
+print("group_b")
+print("union:",group_a.union(group_b))
+print("intersection:",group_a.intersection(group_b))
+print("difference:",group_a.difference(group_b))
+print("sym_difference:",group_a.symmetric_difference(group_b))
+[12:56 am, 22/11/2025] Dharani: 10-2
+[12:56 am, 22/11/2025] Dharani: with open("source_file.bin","wb") as f:
+    f.write(b"Hello,this is binary data!")
+with open("source_file.bin","rb") as f1, open("copy_file.bin","wb") as f2:
+    f2.write(f1.read())
+with open("source_file.bin","rb") as f:
+    checksum_source=sum(f.read())
+with open("copy_file.bin","rb") as f:
+    checksum_copy=sum(f.read())
+if checksum_source==checksum_copy:
+    print("file copied successs")
+else:
+    print("not")
+[12:56 am, 22/11/2025] Dharani: 10-3
+[12:56 am, 22/11/2025] Dharani: my_dict={"a":1,"b":2,"c":3}
+sum=sum(my_dict.values())
+print("my_dict:",my_dict)
+print("sum of values in dict:",sum)
+[12:56 am, 22/11/2025] Dharani: 8-1
+[12:56 am, 22/11/2025] Dharani: from array import array
+arr=array('i',[10,20,30])
+print("original array:",arr.tolist())
+arr.append(40)
+print("after append:",arr.tolist())
+arr.insert(2,25)
+print("after insertion:",arr.tolist())
+arr.reverse()
+print("after reverse:",arr.tolist())
+[12:56 am, 22/11/2025] Dharani: 8-2
+[12:56 am, 22/11/2025] Dharani: def pass_check(password):
+    length_ok=len(password)>=8
+    has_upper=any(c.isupper() for c in password)
+    has_lower=any(c.islower() for c in password)
+    has_number=any(c.isdigit() for c in password)
+    has_special=any(not c.isalnum() for c in password)
+    return (length_ok,has_upper,has_lower,has_number,has_special)
+if _name=="main_":
+    print(pass_check("Meg#hana10"))
+[12:56 am, 22/11/2025] Dharani: 8-3
+[12:56 am, 22/11/2025] Dharani: text=input("enter string:")
+vowels="aeiouAEIOU"
+count=0
+for char in text:
+    if char in vowels:
+        count+=1
+print("numbber of vowels=",count)
+[12:56 am, 22/11/2025] Dharani: 6-1
+[12:56 am, 22/11/2025] Dharani: my_list=[10,20,30,40]
+my_list.append(50)
+print("append:",my_list)
+my_list.insert(2,25)
+print("insertion:",my_list)
+my_list.remove(30)
+print("after remove:",my_list)
+my_list.sort()
+print("after sorting:",my_list)
+pop_list=my_list.pop()
+print("after pop:",my_list)
+[12:56 am, 22/11/2025] Dharani: 6-2
+[12:56 am, 22/11/2025] Dharani: import xml.etree.ElementTree as ET
+import pandas as pd
+import io as StringIO
+print("xml module is workiing")
+def parse_books (xml_text):
+    root=ET.fromstring(xml_text)
+    rows=[]
+
+    for book in root.findall("book"):
+        title=(book.findtext("title") or "").strip()
+        author=(book.findtext("author") or "").strip()
+        price=(book.findtext("price") or "").strip()
+
+        try:
+            price=float(price)
+        except(TypeError,ValueError):
+            price=None
+        rows.append({"title":title , "author":author, "price":price})
+    return pd.DataFrame(rows)
+
+if name == "main":
+    samples="""<books>
+    <book><title>ABC</title><author>x</author><price>50</price>
+    </book>
+    </books>"""
+    print(parse_books(samples))
+[12:56 am, 22/11/2025] Dharani: 6-3
+[12:56 am, 22/11/2025] Dharani: my_dict={"name":"manu","age":19,"city":"ongole"}
+key=input("enter key:")
+if key in my_dict:
+    print(f"{key} found in my_dict")
+else:
+    print(f"{key} not found")
+[12:56 am, 22/11/2025] Dharani: 4-1
+[12:56 am, 22/11/2025] Dharani: import pandas as pd
+df = pd.read_csv("input.csv")
+df.columns=[col.strip().lower() for col in df.columns]
+for col in df.select_dtypes(include=['object']).columns:
+    df[col]= df[col].str.strip()
+for col in df.columns:
+    df[col]=pd.to_numeric(df[col],errors='ignore')
+df.to_csv("cleaned_output.csv",index='False')
+print("CSV cleaned successfully")
+print(df)
+[12:56 am, 22/11/2025] Dharani: Name , AGE , Salary 
+ Alice , 25 , 50000 
+ Bob , 30 , 60000 
+ Charlie , , 70000
+[12:56 am, 22/11/2025] Dharani: 4-2
+[12:56 am, 22/11/2025] Dharani: import json
+
+def is_complex_json(data):
+    """Check if JSON contains nested dictionaries or lists."""
+    for key, value in data.items():
+        if isinstance(value, dict) or isinstance(value, list):
+            return True
+    return False
+
+
+import json
+
+def is_complex_json(data):
+    """Check if JSON contains nested dictionaries or lists."""
+    for key, value in data.items():
+        if isinstance(value, dict) or isinstance(value, list):
+            return True
+    return False
+
+
+def flatten_json(data, parent_key=""):
+    flat = {}
+    for key, value in data.items():
+        new_key = f"{parent_key}.{key}" if parent_key else key
+
+        # If value is a dictionary, flatten it recursively
+        if isinstance(value, dict):
+            flat.update(flatten_json(value, new_key))
+        # If value is a list, flatten each item
+        elif isinstance(value, list):
+            for i, item in enumerate(value):
+                flat.update(flatten_json({str(i): item}, new_key))
+        else:
+            flat[new_key] = value
+    return flat
+
+
+if __name__ == "__main__":
+    json_str = '{"a":1,"b":{"c":2,"d":[3,{"e":4}]}}'
+    data = json.loads(json_str)
+
+    # Check for nested objects
+    print("Contains Nested Complex Objects:", is_complex_json(data))
+
+    # Flatten JSON
+    result = flatten_json(data)
+    print(result)
+         …
+[12:56 am, 22/11/2025] Dharani: 2-3 correct code
